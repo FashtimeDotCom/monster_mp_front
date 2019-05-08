@@ -34,8 +34,9 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   if(typeof(imagePadding) != 'undefined'){
     transData.view.imagePadding = imagePadding
   }
-  
+
   that.wxParseImgTap = wxParseImgTap;
+  that.wxParseTagATap = wxParseTagATap;
   that.wxParseImgLoad = wxParseImgLoad;
   if(bindName == getApp().getWxParseOldPattern()){
     // that.wxParseImgTap = function(){};
@@ -45,11 +46,24 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
     bindData[bindName] = transData;
     that.setData(bindData)
     that.wxParseImgTap = wxParseImgTap;
+    that.wxParseTagATap = wxParseTagATap;
     return transData.nodes;
   }
 }
+// 链接点击事件
+function wxParseTagATap(e) {
+  // console.log('wxParseTagATap', e);
+}
 // 图片点击事件
 function wxParseImgTap(e) {
+  // console.log('wxParseImgTap', e);
+  // 判断是否需要跳转
+  const to = e.currentTarget.dataset.to;
+  if (to) {
+    wx.navigateTo({ url: '/pages/web/webView?src=' + to });
+    return;
+  }
+
   var that = this;
   var nowImgUrl = e.target.dataset.src;
   var tagFrom = e.target.dataset.from;
@@ -83,7 +97,7 @@ function getImgUrl(data){
 }
 
 /**
- * 图片视觉宽高计算函数区 
+ * 图片视觉宽高计算函数区
  **/
 function wxParseImgLoad(e) {
   var that = this;
@@ -91,7 +105,7 @@ function wxParseImgLoad(e) {
   var index = e.target.dataset.index;
   if (typeof (tagFrom) != 'undefined' && tagFrom.length > 0) {
     calMoreImageInfo(e, index, that, tagFrom)
-  } 
+  }
 }
 // 假循环获取计算图片视觉最佳宽高
 function calMoreImageInfo(e, index, that, bindName) {
@@ -101,7 +115,7 @@ function calMoreImageInfo(e, index, that, bindName) {
   }
   // var temImages = temData.images;
   //因为无法获取view宽度 需要自定义padding进行计算，稍后处理
-  var recal = wxAutoImageCal(e.detail.width, e.detail.height, that, temData); 
+  var recal = wxAutoImageCal(e.detail.width, e.detail.height, that, temData);
 
   // var index = temImages[idx].index
   var key = `${bindName}`;
@@ -176,7 +190,7 @@ function wxParseTemArray(temArrayName,bindNameReg,total,that){
 
 /**
  * 配置emojis
- * 
+ *
  */
 
 function emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis){

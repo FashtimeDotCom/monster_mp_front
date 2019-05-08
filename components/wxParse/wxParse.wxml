@@ -15,7 +15,7 @@
 </template>
 
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" data-index="{{item.index}}" src="{{item.attr.src}}" bindload="wxParseImgLoad" bindtap="{{item.from == '_listVesselRichText_' ? '' : 'wxParseImgTap'}}" mode="widthFix" style="width:{{item.width}}px;{{item.styleStr}}" />
+  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" data-index="{{item.index}}" src="{{item.attr.src}}" bindload="wxParseImgLoad" data-to="{{item.attr._src}}" bindtap="{{item.from == '_listVesselRichText_' ? '' : 'wxParseImgTap'}}" mode="widthFix" style="width:{{item.width}}px;{{item.styleStr}}" ></image>
 </template>
 
 <template name="WxEmojiView">

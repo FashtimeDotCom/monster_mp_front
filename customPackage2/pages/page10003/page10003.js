@@ -214,6 +214,7 @@ var pageData = {
     app.turnToSearchPage(e);
   },
   previewImage: function (e) {
+    console.log('previewImage', e);
     var dataset = e.currentTarget.dataset;
     app.previewImage({
       current : dataset.src,

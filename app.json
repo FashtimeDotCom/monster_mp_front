@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/page10000/page10000",
+    "pages/web/webView",
     "pages/userCenterComponentPage/userCenterComponentPage",
     "pages/storeSinglePage/storeSinglePage",
     "pages/classifyGoodsListPage/classifyGoodsListPage",
