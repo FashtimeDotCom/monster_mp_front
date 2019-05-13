@@ -58,11 +58,11 @@ function wxParseTagATap(e) {
 function wxParseImgTap(e) {
   // console.log('wxParseImgTap', e);
   // 判断是否需要跳转
-  const to = e.currentTarget.dataset.to;
-  if (to) {
-    wx.navigateTo({ url: '/pages/web/webView?src=' + to });
-    return;
-  }
+  // const to = e.currentTarget.dataset.to;
+  // if (to) {
+  //   wx.navigateTo({ url: '/pages/web/webView?src=' + to });
+  //   return;
+  // }
 
   var that = this;
   var nowImgUrl = e.target.dataset.src;
