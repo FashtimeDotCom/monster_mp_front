@@ -78,7 +78,7 @@ Component({
       return {
         path: sharePath,
         title: shareTitle,
-        imageUrl: imageUrl   
+        imageUrl: imageUrl
         }
     },
     gotoCouponDetail: function (event) {

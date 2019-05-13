@@ -41,12 +41,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "web",
 					"pathName": "pages/web/webView",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "page10003",
+					"pathName": "customPackage2/pages/page10003/page10003",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "toPage10003",
+					"pathName": "pages/jump/toPage10003",
 					"query": "",
 					"scene": null
 				}

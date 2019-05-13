@@ -48,6 +48,7 @@ var pageData = {
   modelChooseId: '',
   modelChooseName: [],
   onLoad: function (e) {
+    e.detail = e.detail || '446433';  // 默认进入
     if (e.statisticsType == 11) {
       delete e.statisticsType
       delete e.needStatistics
