@@ -4,10 +4,10 @@ Page({
   data: {
     classifyGroupForm: '',
     categoryId: '',
-    classifyGoodsList: { 
-      "type": "goods-list", 
+    classifyGoodsList: {
+      "type": "goods-list",
       "style": "",
-      "content": "", 
+      "content": "",
       "customFeature": { "lineBackgroundColor": "rgb(255, 255, 255)", "lineBackgroundImage": "", "margin": 0, "lineHeight": 75, "imgWidth": 80, "imgHeight": 80, "vesselAutoheight": 0, "height": "300px", "form": "goods", "mode": 0, "name": "\u5546\u54c1\u5217\u8868", "ifUseContact": true, "isIntegral": false, "isHideSales": false, "isHideStock": false, "isShoppingCart": true, "isBuyNow": false, "isShowVirtualPrice": true, "id": "list-323814140496" },
       "animations": [],
       "page_form": "",
@@ -53,7 +53,7 @@ Page({
       "classifyGoodsList.customFeature.isShoppingCart": (options.isShoppingCart == "false" || goods_type == 1) ? false : true,
       "classifyGoodsList.customFeature.isBuyNow": options.isBuyNow == "true" ? true : false
     });
-    
+
     this.getClassifyGoodsListData();
 
     app.globalData.classifyGoodsListPageRefresh = false;
@@ -199,7 +199,7 @@ Page({
    * 综合排序 tab = 0
    */
   sortByDefault: function (e) {
-    this.setData({ 
+    this.setData({
       tab: 0 ,
       sortKey: '',
       sortDirection: '',

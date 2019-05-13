@@ -1,4 +1,5 @@
-var Page = require('../../utils/wlad_sdk.min.js').Page;
+var Page = require('../../utils/wlad_sdk.min.js').Page; // 微量联盟
+var Page = require('../../utils/pushsdk.js').pushSdk(Page).Page;  // 小神推
 var app      = getApp();
 
 var pageData = {

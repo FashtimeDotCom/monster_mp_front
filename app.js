@@ -1,6 +1,9 @@
-
+// 微量联盟
 var App = require('./utils/wlad_sdk.min.js').App;
 const ald = require('./utils/ald-stat.js')
+
+// 小神推
+var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
 
 
 var WxParse = require('components/wxParse/wxParse.js');

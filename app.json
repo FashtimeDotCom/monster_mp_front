@@ -10,7 +10,8 @@
     "pages/couponDetail/couponDetail",
     "pages/goodsDetail/goodsDetail",
     "pages/orderDetail/orderDetail",
-    "pages/groupGoodsDetail/groupGoodsDetail"
+    "pages/groupGoodsDetail/groupGoodsDetail",
+    "pages/ence_push/ence_push"
   ],
   "subPackages": [
     {
