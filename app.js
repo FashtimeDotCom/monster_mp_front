@@ -3,10 +3,10 @@ var App = require('./utils/wlad_sdk.min.js').App;
 const ald = require('./utils/ald-stat.js')
 
 // 小盟广告
-var App = require('./utils/dsp_sdk.js').App
+// var App = require('./utils/dsp_sdk.js').App
 
 // 小神推
-var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
+// var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
 
 
 var WxParse = require('components/wxParse/wxParse.js');
@@ -42,7 +42,7 @@ App({
     });
   },
   onShow: function (options) {
-    this._initSDKOpenId();
+    // this._initSDKOpenId();
     this._logining = false;
     if ((options && [1007, 1008, 1011, 1012, 1013, 1014, 1019, 1020, 1024, 1029, 1035, 1036, 1038, 1043, 1044, 1058, 1067, 1073, 1074, 1091, 1096].indexOf(+options.scene) > -1) || !this.globalData.appOptions) {
       this.globalData.appOptions = options;

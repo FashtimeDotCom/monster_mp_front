@@ -175,9 +175,9 @@
   </block>
   <block wx:else>
     <!-- 小神推收集formid -->
-    <view style="position:relative">
+    <!-- <view style="position:relative">
       <form bindsubmit="pushFormSubmit"  report-submit='true'>
-        <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button>
+        <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button> -->
           <!-- 资讯列表 -->
           <view class="element free-vessel" style="{{data.style}}" data-event-params="{{data.customFeature}}" bindtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
             <block wx:if="{{!!item}}">
@@ -187,8 +187,8 @@
               <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data}}"></template>
             </block>
           </view>
-      </form>
-    </view>
+      <!-- </form>
+    </view> -->
   </block>
 </template>
 <template name="zcSubFreeVessel5_0">
@@ -263,17 +263,17 @@
           </block>
         </view>
         <!-- 小神推收集formid -->
-        <view style="position:relative">
+        <!-- <view style="position:relative">
           <form bindsubmit="pushFormSubmit"  report-submit='true'>
-            <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button>
+            <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button> -->
               <!-- banner⼴广告，按需引⼊入，每7条显示一条广告 -->
             <view wx:if="{{(index + 1) % 7 === 0 && wlad.ad.banner[(index + 1) / 7 - 1]}}" class="wl_banner ele-container" style="background: #e2eefa;color:#333;padding: 24rpx 16rpx;box-sizing: border-box;">
               <view style="background: #ffffff;">
                 <wl-ad data-id="{{wlad.ad.banner[(index + 1) / 7 - 1]}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"></wl-ad>
               </view>
             </view>
-          </form>
-        </view>
+          <!-- </form>
+        </view> -->
 </view>
     </view>
     <template wx:if="{{data.loading}}" is="requestLoading"></template>
