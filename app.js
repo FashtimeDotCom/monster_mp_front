@@ -39,6 +39,7 @@ App({
     });
   },
   onShow: function (options) {
+    this._initSDKOpenId();
     this._logining = false;
     if ((options && [1007, 1008, 1011, 1012, 1013, 1014, 1019, 1020, 1024, 1029, 1035, 1036, 1038, 1043, 1044, 1058, 1067, 1073, 1074, 1091, 1096].indexOf(+options.scene) > -1) || !this.globalData.appOptions) {
       this.globalData.appOptions = options;
@@ -1230,6 +1231,49 @@ App({
         console.log('login fail: ' + res.errMsg);
         that.addLog('login fail: ' + res.errMsg);
       }
+    })
+  },
+  _initSDKOpenId: function () {
+    let that = this;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          that._getOpenId(res.code).then(openid => {
+            wx.xst.setOpenId(openid);
+          });
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg);
+          that.addLog('获取用户登录态失败！' + res.errMsg);
+        }
+      },
+      fail: function (res) {
+        that._logining = false;
+        console.log('login fail: ' + res.errMsg);
+        that.addLog('login fail: ' + res.errMsg);
+      }
+    })
+  },
+  _getOpenId: function(code, cb) {
+    return new Promise((resolve, reject) => {
+      // 没有后台，只能前端请求
+      const appId = 'wxc6fa3baccd00d0cb';
+      const secret = '7e91db4492d7c05fdbfad2f775851ad4';
+      wx.request({
+        url: 'https://api.weixin.qq.com/sns/jscode2session',
+        data: {
+          appid: appId,
+          secret: secret,
+          js_code: code,
+          grant_type: 'authorization_code'
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: res => {
+          resolve(res.data.openid);
+        }
+      })
     })
   },
   _sendCode: function (code) {
