@@ -2,6 +2,9 @@
 var App = require('./utils/wlad_sdk.min.js').App;
 const ald = require('./utils/ald-stat.js')
 
+// 小盟广告
+var App = require('./utils/dsp_sdk.js').App
+
 // 小神推
 var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
 
@@ -1240,6 +1243,7 @@ App({
         if (res.code) {
           that._getOpenId(res.code).then(openid => {
             wx.xst.setOpenId(openid);
+            wx.dsp.setOpenid(openid);
           });
         } else {
           console.log('获取用户登录态失败！' + res.errMsg);
