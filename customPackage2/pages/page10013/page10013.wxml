@@ -20,7 +20,7 @@
     <template is="zcText" data="{{data:text1, real_value:real_value.form_data[text1.customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{text1.customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:text1, real_value:item.form_data[text1.customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -71,7 +71,7 @@
     <template is="zcText" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[0].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -107,7 +107,7 @@
     <template is="zcText" data="{{data:text5, real_value:real_value.form_data[text5.customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{text5.customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:text5, real_value:item.form_data[text5.customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -171,7 +171,7 @@
     <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[1].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -267,7 +267,7 @@
     <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[1].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -294,6 +294,12 @@
     <template is="zcFreeVessel9_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId}}"></template>
   </block>
 </view>
+        <!-- 换量联盟 -->
+        <view wx:if="{{(index + 1) % 4 === 0 && wlad.ad.banner[(index + 1) / 4 - 1]}}" class="wl_banner ele-container" style="background: #ffffff;color:#333;padding: 16rpx 16rpx 96rpx;box-sizing: border-box;max-width: none;width: 200%;margin-left: -100%;">
+          <view style="background: #ffffff;border: 2rpx solid #e2eefa; border-radius: 10rpx;" catchtap="prevent">
+            <wl-ad data-id="{{wlad.ad.banner[(index + 1) / 4 - 1]}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"></wl-ad>
+          </view>
+        </view>
 </view>
     </view>
     <template wx:if="{{data.loading}}" is="requestLoading"></template>
@@ -307,7 +313,7 @@
   </scroll-view>
 </template>
 <view class="ele-container" wx:if="{{!list_vessel9.hidden}}">
-  <template is="zcListVessel9" data="{{data:list_vessel9, detail_data: detail_data,form:list_vessel1.customFeature.form}}"></template>
+  <template is="zcListVessel9" data="{{data:list_vessel9, detail_data: detail_data,form:list_vessel1.customFeature.form,wlad: wlad}}"></template>
 </view>
 <block wx:if="{{!suspension10.hidden}}">
   <template is="zcSuspension" data="{{data:suspension10}}"></template>

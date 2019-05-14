@@ -20,7 +20,7 @@
     <template is="zcText" data="{{data:text1, real_value:real_value.form_data[text1.customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{text1.customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:text1, real_value:item.form_data[text1.customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -71,7 +71,7 @@
     <template is="zcText" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[0].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -329,7 +329,7 @@
     <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[1].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
@@ -425,7 +425,7 @@
     <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment],  form_data: real_value.form_data}}"></template>
   </block>
   <block wx:elif="{{data.content[1].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 --> 
+  <!-- 动态列表,动态容器 与详情页绑定地图 -->
     <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
   </block>
   <block wx:elif="{{real_value}}">
