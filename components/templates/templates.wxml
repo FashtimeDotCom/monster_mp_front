@@ -128,7 +128,7 @@
         </navigator>
       </block>
       <block wx:else>
-        <view data-compdata="{{ data }}" class="element picture" style="{{data.style}}" data-event-params="{{data.customFeature}}" data-img="{{real_value}}" data-imgArr="{{real_value}}" catchtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
+        <view data-compdata="{{ data }}" class="element picture" style="{{data.style}}{{imgStyle}}" data-event-params="{{data.customFeature}}" data-img="{{real_value}}" data-imgArr="{{real_value}}" catchtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
           <image src="{{real_value}}" mode="scaleToFill"></image>
         </view>
       </block>

@@ -181,10 +181,10 @@
           <!-- 资讯列表 -->
           <view class="element free-vessel" style="{{data.style}}{{wrapStyle}}" data-event-params="{{data.customFeature}}" bindtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
             <block wx:if="{{!!item}}">
-              <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId, imgStyle: imgStyle,titleStyle: titleStyle,tipStyle:tipStyle}}"></template>
+              <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId, imgStyle: imgStyle,titleStyle: titleStyle,tipStyle:tipStyle, fireStyle: fireStyle}}"></template>
             </block>
             <block wx:else>
-              <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data, imgStyle: imgStyle,titleStyle: titleStyle,tipStyle:tipStyle}}"></template>
+              <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data, imgStyle: imgStyle,titleStyle: titleStyle,tipStyle:tipStyle,fireStyle:fireStyle}}"></template>
             </block>
           </view>
       <!-- </form>
@@ -194,6 +194,7 @@
 <template name="zcSubFreeVessel5_0">
   <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
     <block wx:if="{{real_value}}">
+      <!-- 图片 -->
       <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value, imgStyle: imgStyle}}"></template>
     </block>
     <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
@@ -215,6 +216,7 @@
     <!-- 动态列表,动态容器 与详情页绑定地图 -->
       <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
     </block>
+    <!-- 标题 -->
     <block wx:elif="{{real_value}}">
       <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment], parent_form:item.form, detail_data: detail_data, textStyle: titleStyle}}"></template>
     </block>
@@ -238,8 +240,18 @@
     <!-- 动态列表,动态容器 与详情页绑定地图 -->
       <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
     </block>
+    <!-- 标签 -->
     <block wx:elif="{{real_value}}">
       <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data, textStyle: tipStyle}}"></template>
+
+      <!-- 人气值 -->
+      <template is="zcText" data="{{data:data.content[2], real_value: '🔥 '+(real_value.form_data['split'+data.content[2].customFeature.segment][1] || 0), parent_form:'form', detail_data: detail_data, textStyle: fireStyle}}"></template>
+      <!-- 收藏量 -->
+      <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/like.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left:520rpx;'}}"></template>
+      <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][2] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:560rpx;'}}"></template>
+      <!-- 转发量 -->
+      <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/share.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left: 626rpx;'}}"></template>
+      <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][3] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:664rpx;'}}"></template>
     </block>
     <block wx:elif="{{detail_data[data.content[2].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
       <template is="zcText" data="{{data:data.content[2], real_value:detail_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
@@ -259,7 +271,7 @@
     <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:real_value, detail_data: detail_data, index:index, item : item,wlad: wlad}}"></template>
   </block>
   <block wx:else>
-    <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId,wlad: wlad, imgStyle:(index + 1) % 7 === 4 ? 'width:688rpx;height:504rpx;left: 32rpx;top:100rpx;' : '',wrapStyle: (index + 1) % 7 === 4 ? 'height:680rpx;' : '',titleStyle: (index + 1) % 7 === 4 ? 'top: 34rpx;width:704rpx;': '', tipStyle: (index + 1) % 7 === 4 ? 'top: 620rpx;': ''}}"></template>
+    <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId,wlad: wlad, imgStyle:(index + 1) % 7 === 4 ? 'width:688rpx;height:504rpx;left: 32rpx;top:100rpx;' : '',wrapStyle: (index + 1) % 7 === 4 ? 'height:728rpx;' : 'height:268rpx;',titleStyle: (index + 1) % 7 === 4 ? 'top: 34rpx;width:704rpx;': '', tipStyle: (index + 1) % 7 === 4 ? 'top: 620rpx;': '', fireStyle: ((index + 1) % 7 === 4 ? 'top: 656rpx;': 'top:216rpx;') + 'color: #bfbfbf;'}}"></template>
   </block>
 </view>
 <!-- 小神推收集formid -->

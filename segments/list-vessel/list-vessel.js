@@ -76,18 +76,18 @@ var listVessel = new Element({
                   if (field.indexOf(k) < 0 && /<("[^"]*"|'[^']*'|[^'">])*>/.test(description)) { //没有绑定的字段的富文本置为空
                     res.data[j].form_data[k] = '';
                   } else if (app.needParseRichText(description)) {
+                    res.data[j].form_data['row' + k] = description;
+                    res.data[j].form_data['split' + k] = description.split(';');
                     res.data[j].form_data[k] = app.getWxParseResult(description);
                   }
                 }
               }
             }
-
             newdata[compid + '.list_data'] = res.data;
             newdata[compid + '.is_more'] = res.is_more || 0;
             newdata[compid + '.curpage'] = 1;
             newdata[compid + '.loading'] = false;
             newdata[compid + '.loadingFail'] = false;
-
             pageInstance.setData(newdata);
           }
         },
