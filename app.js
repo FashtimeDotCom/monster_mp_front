@@ -2,6 +2,12 @@
 var App = require('./utils/wlad_sdk.min.js').App;
 const ald = require('./utils/ald-stat.js')
 
+// growing io, version 是你的小程序的版本号，发版时请调整; usePlugin 设置是否使用插件
+var gio = require("./utils/gio-minp.js").default;
+gio('init', 'a16384ec35a016ab', 'wxc6fa3baccd00d0cb', { version: '1.0', usePlugin: true, followShare: true });
+var App = global.GioApp
+
+
 // 小盟广告
 // var App = require('./utils/dsp_sdk.js').App
 
