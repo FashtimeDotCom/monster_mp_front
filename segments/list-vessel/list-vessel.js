@@ -78,7 +78,7 @@ var listVessel = new Element({
                   } else if (app.needParseRichText(description)) {
                     res.data[j].form_data['row' + k] = description;
                     res.data[j].form_data['split' + k] = description.split(';');
-                    res.data[j].form_data[k] = app.getWxParseResult(description);
+                    res.data[j].form_data[k] = app.getWxParseResult(description.split(';')[0]);
                   }
                 }
               }
