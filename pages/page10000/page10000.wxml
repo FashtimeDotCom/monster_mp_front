@@ -1,28 +1,77 @@
 <import src="/components/wxParse/wxParse.wxml"/>
 <import src="/components/templates/templates.wxml"/>
 <view class="app" hidden="{{page_hidden}}">
-<web-view wx-if="{{false}}" src="{{false}}"></web-view>
-<component-share pageQRCodeData="{{pageQRCodeData}}"></component-share>
-<component-backhome backToHomePage="{{backToHomePage}}"></component-backhome>
-<component-reward-point rewardPointObj="{{rewardPointObj}}"></component-reward-point>
-<component-shop-vip shopVipModal="{{shopVipModal}}"></component-shop-vip>
-<component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
-<component-filter filterShow="{{filterShow}}" chooseCateId="{{categoryId}}" form="{{classifyGroupForm}}" bind:confirm="filterConfirm"></component-filter>
-<component-formPay id="component-formPay" formInfo="{{formInfo}}"></component-formPay>
-<component-community-publish communityPublish="{{communityPublish}}"></component-community-publish>
-<component-community-publish-type communityPublishType="{{communityPublishType}}"></component-community-publish-type>
-<component-goodsShoppingCart id="component-goodsShoppingCart" bind:afterSelectedGoods="afterSelectGoods"></component-goodsShoppingCart>
-<component-sinkingModal></component-sinkingModal>
-<franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar>
+  <web-view wx-if="{{false}}" src="{{false}}"></web-view>
+  <component-share pageQRCodeData="{{pageQRCodeData}}"></component-share>
+  <component-backhome backToHomePage="{{backToHomePage}}"></component-backhome>
+  <component-reward-point rewardPointObj="{{rewardPointObj}}"></component-reward-point>
+  <component-shop-vip shopVipModal="{{shopVipModal}}"></component-shop-vip>
+  <component-getUserInfo showGetUserInfo="{{showGetUserInfo}}"></component-getUserInfo>
+  <component-filter filterShow="{{filterShow}}" chooseCateId="{{categoryId}}" form="{{classifyGroupForm}}" bind:confirm="filterConfirm"></component-filter>
+  <component-formPay id="component-formPay" formInfo="{{formInfo}}"></component-formPay>
+  <component-community-publish communityPublish="{{communityPublish}}"></component-community-publish>
+  <component-community-publish-type communityPublishType="{{communityPublishType}}"></component-community-publish-type>
+  <component-goodsShoppingCart id="component-goodsShoppingCart" bind:afterSelectedGoods="afterSelectGoods"></component-goodsShoppingCart>
+  <component-sinkingModal></component-sinkingModal>
+  <franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar>
 
-<!-- 插屏⼴广告，按需引⼊入 -->
-<view class="wl_insert">
+  <!-- 微量联盟插屏广告 & 悬浮广告 -->
+  <view class="wl_insert">
     <wl-ad data-id="{{wlad.ad.insert}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"> </wl-ad>
-</view>
-<!-- 悬浮⼴广告，按需引⼊入 -->
-<view class="wl_fixed"><wl-ad data-id="{{wlad.ad.fixed}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"> </wl-ad>
+  </view>
+  <view class="wl_fixed">
+    <wl-ad data-id="{{wlad.ad.fixed}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"> </wl-ad>
+  </view>
+
+  <!-- 页面元素：顶部引导添加到我的小程序图片，实际使用为第二个block -->
+  <view class="ele-container" wx:if="{{!free_vessel1.hidden}}">
+    <block wx:if="{{real_value}}">
+      <template is="zcFreeVessel1" data="{{data:free_vessel1, real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
+    </block>
+    <block wx:else><!-- 实际使用 -->
+      <template is="zcFreeVessel1" data="{{data:free_vessel1, real_value:item, detail_data: detail_data ,index:index,item : item , parentType : free_vessel1.parentCompid , page_form : free_vessel1.page_form , form: data.form, dataId : dataId}}"></template>
+    </block>
+  </view>
+
+  <!-- 页面元素：分割线，模板来自 components/templates/templates.wxml -->
+  <view class="ele-container" wx:if="{{!breakline2.hidden}}">
+    <template is="zcBreakline" data="{{data:breakline2}}"></template>
+  </view>
+
+  <!-- 页面元素：搜索框，模板来自 components/templates/templates.wxml -->
+  <view class="ele-container" wx:if="{{!search3.hidden}}">
+    <template is="zcSearch" data="{{data:search3, userInfo}}"></template>
+  </view>
+
+  <!-- 页面元素：分割线，模板来自 components/templates/templates.wxml -->
+  <view class="ele-container" wx:if="{{!breakline2.hidden}}">
+    <template is="zcBreakline" data="{{data:breakline2}}"></template>
+  </view>
+  <view class="ele-container" wx:if="{{!breakline4.hidden}}">
+    <template is="zcBreakline" data="{{data:breakline4}}"></template>
+  </view>
+
+  <!-- 页面元素：咨询列表 -->
+  <!-- 点击跳到 customerPackage2/pages/page10003 -->
+  <!-- 更多资讯 customerPackage2/pages/page10013 -->
+  <view class="ele-container" wx:if="{{!list_vessel5.hidden}}">
+    <template is="zcListVessel5" data="{{data:list_vessel5, detail_data: detail_data,form:list_vessel1.customFeature.form,wlad: wlad}}"></template>
+  </view>
+
+  <!-- 页面元素：空白 -->
+  <view class="ele-container" wx:if="{{!list_vessel6.hidden}}">
+    <template is="zcListVessel6" data="{{data:list_vessel6, detail_data: detail_data,form:list_vessel1.customFeature.form}}"></template>
+  </view>
+
+  <!-- 页面元素：悬浮窗，模板来自 components/templates/templates.wxml -->
+  <block wx:if="{{!suspension7.hidden}}">
+    <template is="zcSuspension" data="{{data:suspension7}}"></template>
+  </block>
 </view>
 
+
+
+<!-- 模板：顶部引导添加我的小程序图片 -->
 <template name="zcFreeVessel1">
   <block wx:if="{{data.customFeature.action == 'turn-to-xcx'}}">
     <navigator target="miniProgram" open-type="navigate" app-id="{{data.customFeature['xcx-appid']}}" path="{{data.customFeature['xcx-page-url'] || ''}}" version="release">
@@ -41,126 +90,157 @@
       <block wx:if="{{!!item}}">
         <template is="zcSubFreeVessel1" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId}}"></template>
       </block>
-      <block wx:else>
+      <block wx:else> <!-- 实际使用 -->
         <template is="zcSubFreeVessel1" data="{{data:data, real_value:real_value, detail_data: detail_data}}"></template>
       </block>
     </view>
   </block>
 </template>
+
+<!-- 子模板：顶部引导添加我的小程序图片子图 -->
 <template name="zcSubFreeVessel1">
   <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
-  </block>
-  <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:detail_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{in_dynamic_vessel === 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-</view><view class="ele-container" wx:if="{{!data.content[1].hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcPicture" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
-  </block>
-  <block wx:elif="{{detail_data[data.content[1].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[1], real_value:detail_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{in_dynamic_vessel === 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcPicture" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-</view><view class="ele-container" wx:if="{{!data.content[2].hidden}}">
-  <block wx:if="{{data.content[2].customFeature.segment == 'default_map' && real_value}}">
-  <!-- 在动态列表中的双栏中绑定地图 -->
-    <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment],  form_data: real_value.form_data}}"></template>
-  </block>
-  <block wx:elif="{{data.content[2].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 -->
-    <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{real_value}}">
-    <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{detail_data[data.content[2].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
-    <template is="zcText" data="{{data:data.content[2], real_value:detail_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{in_dynamic_vessel === 'true'}}">
-    <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-</view>
+    <block wx:if="{{real_value}}">
+      <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
+    </block>
+    <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
+      <template is="zcPicture" data="{{data:data.content[0], real_value:detail_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{in_dynamic_vessel === 'true'}}">
+      <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+    <block wx:else><!-- 实际使用: 温馨提示子图 -->
+      <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+  </view>
+  <view class="ele-container" wx:if="{{!data.content[1].hidden}}">
+    <block wx:if="{{real_value}}">
+      <template is="zcPicture" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
+    </block>
+    <block wx:elif="{{detail_data[data.content[1].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
+      H<template is="zcPicture" data="{{data:data.content[1], real_value:detail_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{in_dynamic_vessel === 'true'}}">
+      <template is="zcPicture" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+    <block wx:else><!-- 实际使用: 小箭头子图 -->
+      <template is="zcPicture" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], detail_data: detail_data}}"></template>
+    </block>
+  </view>
+  <view class="ele-container" wx:if="{{!data.content[2].hidden}}">
+    <block wx:if="{{data.content[2].customFeature.segment == 'default_map' && real_value}}">
+      <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment],  form_data: real_value.form_data}}"></template>
+    </block>
+    <block wx:elif="{{data.content[2].customFeature.segment == 'default_map'}}">
+      <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{real_value}}">
+      <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{detail_data[data.content[2].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
+      <template is="zcText" data="{{data:data.content[2], real_value:detail_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{in_dynamic_vessel === 'true'}}">
+      <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:else><!-- 实际使用: 文字描述 '点击此处添加为' -->
+      <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+  </view>
 
-<view class="ele-container" wx:if="{{!data.content[3].hidden}}">
-  <block wx:if="{{data.content[3].customFeature.segment == 'default_map' && real_value}}">
-  <!-- 在动态列表中的双栏中绑定地图 -->
-    <template is="zcText" data="{{data:data.content[3], real_value:real_value.form_data[data.content[3].customFeature.segment],  form_data: real_value.form_data}}"></template>
-  </block>
-  <block wx:elif="{{data.content[3].customFeature.segment == 'default_map'}}">
-  <!-- 动态列表,动态容器 与详情页绑定地图 -->
-    <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{real_value}}">
-    <template is="zcText" data="{{data:data.content[3], real_value:real_value.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{detail_data[data.content[3].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
-    <template is="zcText" data="{{data:data.content[3], real_value:detail_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{in_dynamic_vessel === 'true'}}">
-    <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
-  </block>
-</view>
-
-
+  <view class="ele-container" wx:if="{{!data.content[3].hidden}}">
+    <block wx:if="{{data.content[3].customFeature.segment == 'default_map' && real_value}}">
+      <template is="zcText" data="{{data:data.content[3], real_value:real_value.form_data[data.content[3].customFeature.segment],  form_data: real_value.form_data}}"></template>
+    </block>
+    <block wx:elif="{{data.content[3].customFeature.segment == 'default_map'}}">
+      <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{real_value}}">
+      <template is="zcText" data="{{data:data.content[3], real_value:real_value.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{detail_data[data.content[3].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
+      <template is="zcText" data="{{data:data.content[3], real_value:detail_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:elif="{{in_dynamic_vessel === 'true'}}">
+      <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+    <block wx:else><!-- 实际使用: 文字描述 '我的小程序' -->
+      <template is="zcText" data="{{data:data.content[3], real_value:item.form_data[data.content[3].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
+    </block>
+  </view>
 </template>
-<view class="ele-container" wx:if="{{!free_vessel1.hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcFreeVessel1" data="{{data:free_vessel1, real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcFreeVessel1" data="{{data:free_vessel1, real_value:item, detail_data: detail_data ,index:index,item : item , parentType : free_vessel1.parentCompid , page_form : free_vessel1.page_form , form: data.form, dataId : dataId}}"></template>
-  </block>
-</view>
-<view class="ele-container" wx:if="{{!breakline2.hidden}}">
-  <template is="zcBreakline" data="{{data:breakline2}}"></template>
-</view>
-<view class="ele-container" wx:if="{{!search3.hidden}}">
-  <template is="zcSearch" data="{{data:search3, userInfo}}"></template>
-</view><view class="ele-container" wx:if="{{!breakline4.hidden}}">
-  <template is="zcBreakline" data="{{data:breakline4}}"></template>
-</view>
+
+<!-- 模板：资讯列表 -->
 <template name="zcListVessel5">
-  <scroll-view class="element list-vessel-wrap scroll-ele {{data.customFeature.mode? 'mode-' + data.customFeature.mode: ''}} {{(data.customFeature.mode == 2 && data.curpage > 0) ? 'hor-request-status' : ''}}"
-               data-id="{{data.customFeature_id}}"
-               data-type="list-vessel"
-               style="{{data.style}}"
-               data-param="{{data.param}}"
-               data-compid="{{data.compId}}"
-               scroll-y="{{(data.customFeature.mode == 2 || data.customFeature.vesselAutoheight != 0) ? false : true}}"
-               scroll-x="{{data.customFeature.mode == 2? true: false}}"
-               lower-threshold="100"
-               bindscrolltolower="pageScrollFunc"
-               bindanimationend="animationEnd"
-  >
+  <scroll-view
+    class="element list-vessel-wrap scroll-ele {{data.customFeature.mode? 'mode-' + data.customFeature.mode: ''}} {{(data.customFeature.mode == 2 && data.curpage > 0) ? 'hor-request-status' : ''}}"
+    data-id="{{data.customFeature_id}}"
+    data-type="list-vessel"
+    style="{{data.style}}"
+    data-param="{{data.param}}"
+    data-compid="{{data.compId}}"
+    scroll-y="{{(data.customFeature.mode == 2 || data.customFeature.vesselAutoheight != 0) ? false : true}}"
+    scroll-x="{{data.customFeature.mode == 2? true: false}}"
+    lower-threshold="100"
+    bindscrolltolower="pageScrollFunc"
+    bindanimationend="animationEnd">
     <view class="js-list-container clearfix" data-list-index="0">
       <view class="list-vessel clearfix background-ele" wx:for="{{data.list_data}}"
-            wx:key=""
-            style="{{data.list_style}}"
-            data-dataid="{{data.customFeature.link == 'franchiseeDetail' ? item.form_data.app_id[0].text : (item.id || item.form_data.id[0].text)}}"
-            data-router="{{data.customFeature.link}}"
-            data-isseckill="{{item.form_data.is_seckill[0].text || ''}}"
-            data-compid="list_vessel5"
-            data-index="{{index}}"
-            bindtap="listVesselTurnToPage"><template name="zcFreeVessel5_0">
+        wx:key=""
+        style="{{data.list_style}}"
+        data-dataid="{{data.customFeature.link == 'franchiseeDetail' ? item.form_data.app_id[0].text : (item.id || item.form_data.id[0].text)}}"
+        data-router="{{data.customFeature.link}}"
+        data-isseckill="{{item.form_data.is_seckill[0].text || ''}}"
+        data-compid="list_vessel5"
+        data-index="{{index}}"
+        bindtap="listVesselTurnToPage">
+        <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
+          <block wx:if="{{real_value}}">
+            <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:real_value, detail_data: detail_data, index:index, item : item,wlad: wlad}}"></template>
+          </block>
+          <block wx:else><!-- 实际使用，资讯列表 item -->
+            <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId,wlad: wlad, imgStyle:(index + 1) % 7 === 4 ? 'width:688rpx;height:504rpx;left: 32rpx;top:100rpx;' : '',wrapStyle: (index + 1) % 7 === 4 ? 'height:728rpx;' : 'height:268rpx;',titleStyle: (index + 1) % 7 === 4 ? 'top: 34rpx;width:704rpx;': '', tipStyle: (index + 1) % 7 === 4 ? 'top: 620rpx;': '', fireStyle: ((index + 1) % 7 === 4 ? 'top: 656rpx;': 'top:216rpx;') + 'color: #bfbfbf;'}}"></template>
+          </block>
+        </view>
+
+        <!-- 小神推收集formid -->
+        <!-- <view style="position:relative">
+          <form bindsubmit="pushFormSubmit"  report-submit='true'>
+            <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button> -->
+
+            <!-- 微量联盟⼴告，1、2、3 免费资讯，4收费课程，5、6、7免费资讯，8广告位，以此类推 -->
+            <view wx:if="{{(index + 1) % 7 === 0 && wlad.ad.banner[(index + 1) / 7 - 1]}}" class="wl_banner ele-container" style="background: #e2eefa;color:#333;padding: 24rpx 16rpx;box-sizing: border-box;">
+              <view style="background: #ffffff;">
+                <wl-ad data-id="{{wlad.ad.banner[(index + 1) / 7 - 1]}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"></wl-ad>
+              </view>
+            </view>
+          <!-- </form>
+        </view> -->
+      </view>
+    </view>
+
+    <!-- loading动画，模板来自 components/templates/templates.wxml  -->
+    <template wx:if="{{data.loading}}" is="requestLoading"></template>
+
+    <!-- 暂无数据，模板来自 components/templates/templates.wxml  -->
+    <template wx:if="{{data.is_more == 0 && data.list_data.length == 0}}" is="requestNone" data="{{data: '暂无数据~'}}"></template>
+
+    <!-- 加载失败，模板来自 components/templates/templates.wxml  -->
+    <template wx:if="{{data.loadingFail}}" is="requestFail" data="{{refreshEvent: 'pageScrollFunc', compId: data.compId}}"></template>
+
+    <!-- 加载完所有数据，模板来自 components/templates/templates.wxml  -->
+    <template wx:if="{{data.is_more == 0 && data.list_data.length > 0 && data.customFeature.isShowFinishText}}" is="requestAll"></template>
+
+    <!-- 点击加载更多按钮，模板来自 components/templates/templates.wxml  -->
+    <view class="loading-btn" wx:if="{{data.customFeature.vesselAutoheight == 1 && data.customFeature.loadingMethod == 1 && data.customFeature.mode != 2 && data.is_more && data.is_more != 0 && !data.loading && !data.loadingFail}}" data-compid="{{data.compId}}" bindtap="pageScrollFunc">
+      <image wx:if="{{data.customFeature.loadingStyle == 'img'}}" mode="aspectFill" src="{{data.customFeature.loadingImg}}"></image>
+      <text wx:elif="{{data.customFeature.loadingStyle == 'text'}}" style="color: {{data.customFeature.loadingColor}};">{{data.customFeature.loadingText}}</text>
+    </view>
+  </scroll-view>
+</template>
+
+<!-- 子模板：资讯列表 item -->
+<template name="zcFreeVessel5_0">
   <block wx:if="{{data.customFeature.action == 'turn-to-xcx'}}">
     <navigator target="miniProgram" open-type="navigate" app-id="{{data.customFeature['xcx-appid']}}" path="{{data.customFeature['xcx-page-url'] || ''}}" version="release">
       <view class="element free-vessel" style="{{data.style}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
@@ -173,14 +253,15 @@
       </view>
     </navigator>
   </block>
-  <block wx:else>
+  <block wx:else><!-- 实际使用 -->
     <!-- 小神推收集formid -->
     <!-- <view style="position:relative">
       <form bindsubmit="pushFormSubmit"  report-submit='true'>
         <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button> -->
-          <!-- 资讯列表 -->
+
+          <!-- 资讯列表 item -->
           <view class="element free-vessel" style="{{data.style}}{{wrapStyle}}" data-event-params="{{data.customFeature}}" bindtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
-            <block wx:if="{{!!item}}">
+            <block wx:if="{{!!item}}"><!-- 实际使用 -->
               <template is="zcSubFreeVessel5_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId, imgStyle: imgStyle,titleStyle: titleStyle,tipStyle:tipStyle, fireStyle: fireStyle}}"></template>
             </block>
             <block wx:else>
@@ -191,10 +272,11 @@
     </view> -->
   </block>
 </template>
+
+<!-- 子模板：资讯列表 item 子元素 -->
 <template name="zcSubFreeVessel5_0">
   <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
-    <block wx:if="{{real_value}}">
-      <!-- 图片 -->
+    <block wx:if="{{real_value}}"><!-- 实际使用，资讯图片 -->
       <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value, imgStyle: imgStyle}}"></template>
     </block>
     <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
@@ -209,15 +291,12 @@
   </view>
   <view class="ele-container" wx:if="{{!data.content[1].hidden}}">
     <block wx:if="{{data.content[1].customFeature.segment == 'default_map' && real_value}}">
-    <!-- 在动态列表中的双栏中绑定地图 -->
       <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment],  form_data: real_value.form_data}}"></template>
     </block>
     <block wx:elif="{{data.content[1].customFeature.segment == 'default_map'}}">
-    <!-- 动态列表,动态容器 与详情页绑定地图 -->
       <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
     </block>
-    <!-- 标题 -->
-    <block wx:elif="{{real_value}}">
+    <block wx:elif="{{real_value}}"><!-- 实际使用，资讯标题 -->
       <template is="zcText" data="{{data:data.content[1], real_value:real_value.form_data[data.content[1].customFeature.segment], parent_form:item.form, detail_data: detail_data, textStyle: titleStyle}}"></template>
     </block>
     <block wx:elif="{{detail_data[data.content[1].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
@@ -230,28 +309,15 @@
       <template is="zcText" data="{{data:data.content[1], real_value:item.form_data[data.content[1].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
     </block>
   </view>
-
   <view class="ele-container" wx:if="{{!data.content[2].hidden}}">
     <block wx:if="{{data.content[2].customFeature.segment == 'default_map' && real_value}}">
-    <!-- 在动态列表中的双栏中绑定地图 -->
       <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment],  form_data: real_value.form_data}}"></template>
     </block>
     <block wx:elif="{{data.content[2].customFeature.segment == 'default_map'}}">
-    <!-- 动态列表,动态容器 与详情页绑定地图 -->
       <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, form_data: item.form_data, detail_data: detail_data}}"></template>
     </block>
-    <!-- 标签 -->
-    <block wx:elif="{{real_value}}">
+    <block wx:elif="{{real_value}}"><!-- 实际使用，资讯标签 -->
       <template is="zcText" data="{{data:data.content[2], real_value:real_value.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data, textStyle: tipStyle}}"></template>
-
-      <!-- 人气值 -->
-      <template is="zcText" data="{{data:data.content[2], real_value: '🔥 '+(real_value.form_data['split'+data.content[2].customFeature.segment][1] || 0), parent_form:'form', detail_data: detail_data, textStyle: fireStyle}}"></template>
-      <!-- 收藏量 -->
-      <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/like.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left:520rpx;'}}"></template>
-      <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][2] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:560rpx;'}}"></template>
-      <!-- 转发量 -->
-      <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/share.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left: 626rpx;'}}"></template>
-      <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][3] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:664rpx;'}}"></template>
     </block>
     <block wx:elif="{{detail_data[data.content[2].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
       <template is="zcText" data="{{data:data.content[2], real_value:detail_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
@@ -263,115 +329,91 @@
       <template is="zcText" data="{{data:data.content[2], real_value:item.form_data[data.content[2].customFeature.segment], parent_form:item.form, detail_data: detail_data}}"></template>
     </block>
   </view>
+  <view class="ele-container"><!-- 实际使用，人气值 & 收藏量 & 转发量 -->
+    <!-- 人气值 -->
+    <template is="zcText" data="{{data:data.content[2], real_value: '🔥 '+(real_value.form_data['split'+data.content[2].customFeature.segment][1] || 0), parent_form:'form', detail_data: detail_data, textStyle: fireStyle}}"></template>
+    <!-- 收藏量 -->
+    <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/like.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left:520rpx;'}}"></template>
+    <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][2] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:560rpx;'}}"></template>
+    <!-- 转发量 -->
+    <template is="zcPicture" data="{{data:data.content[0], real_value:'../../images/share.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:fireStyle+'width: 30rpx;height:30rpx;left: 626rpx;'}}"></template>
+    <template is="zcText" data="{{data:data.content[2], real_value: real_value.form_data['split'+data.content[2].customFeature.segment][3] || '0', parent_form:'form', detail_data: detail_data, textStyle: fireStyle+'left:664rpx;'}}"></template>
+  </view>
 </template>
 
-<!-- 咨讯列表 -->
-<view class="ele-container" wx:if="{{!data.content[0].hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:real_value, detail_data: detail_data, index:index, item : item,wlad: wlad}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcFreeVessel5_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId,wlad: wlad, imgStyle:(index + 1) % 7 === 4 ? 'width:688rpx;height:504rpx;left: 32rpx;top:100rpx;' : '',wrapStyle: (index + 1) % 7 === 4 ? 'height:728rpx;' : 'height:268rpx;',titleStyle: (index + 1) % 7 === 4 ? 'top: 34rpx;width:704rpx;': '', tipStyle: (index + 1) % 7 === 4 ? 'top: 620rpx;': '', fireStyle: ((index + 1) % 7 === 4 ? 'top: 656rpx;': 'top:216rpx;') + 'color: #bfbfbf;'}}"></template>
-  </block>
-</view>
-<!-- 小神推收集formid -->
-<!-- <view style="position:relative">
-  <form bindsubmit="pushFormSubmit"  report-submit='true'>
-    <button style='-webkit-transform: scale(0.5);transform:scale(1);content:"";height:100%; width: 100%;border:1px solid transparent;background-color:transparent; position: absolute; top: 0; left: 0' plain="true"  formType="submit"></button> -->
-      <!-- banner⼴广告，按需引⼊入，每7条显示一条广告 -->
-    <view wx:if="{{(index + 1) % 7 === 0 && wlad.ad.banner[(index + 1) / 7 - 1]}}" class="wl_banner ele-container" style="background: #e2eefa;color:#333;padding: 24rpx 16rpx;box-sizing: border-box;">
-      <view style="background: #ffffff;">
-        <wl-ad data-id="{{wlad.ad.banner[(index + 1) / 7 - 1]}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"></wl-ad>
-      </view>
-    </view>
-  <!-- </form>
-</view> -->
-</view>
-    </view>
-    <template wx:if="{{data.loading}}" is="requestLoading"></template>
-    <template wx:if="{{data.is_more == 0 && data.list_data.length == 0}}" is="requestNone" data="{{data: '暂无数据~'}}"></template>
-    <template wx:if="{{data.loadingFail}}" is="requestFail" data="{{refreshEvent: 'pageScrollFunc', compId: data.compId}}"></template>
-    <template wx:if="{{data.is_more == 0 && data.list_data.length > 0 && data.customFeature.isShowFinishText}}" is="requestAll"></template>
-    <view class="loading-btn" wx:if="{{data.customFeature.vesselAutoheight == 1 && data.customFeature.loadingMethod == 1 && data.customFeature.mode != 2 && data.is_more && data.is_more != 0 && !data.loading && !data.loadingFail}}" data-compid="{{data.compId}}" bindtap="pageScrollFunc">
-      <image wx:if="{{data.customFeature.loadingStyle == 'img'}}" mode="aspectFill" src="{{data.customFeature.loadingImg}}"></image>
-      <text wx:elif="{{data.customFeature.loadingStyle == 'text'}}" style="color: {{data.customFeature.loadingColor}};">{{data.customFeature.loadingText}}</text>
-    </view>
-  </scroll-view>
-</template>
-<view class="ele-container" wx:if="{{!list_vessel5.hidden}}">
-  <template is="zcListVessel5" data="{{data:list_vessel5, detail_data: detail_data,form:list_vessel1.customFeature.form,wlad: wlad}}"></template>
-</view>
+<!-- 模板：暂时没有发现在何处使用 -->
 <template name="zcListVessel6">
-  <scroll-view class="element list-vessel-wrap scroll-ele {{data.customFeature.mode? 'mode-' + data.customFeature.mode: ''}} {{(data.customFeature.mode == 2 && data.curpage > 0) ? 'hor-request-status' : ''}}"
-               data-id="{{data.customFeature_id}}"
-               data-type="list-vessel"
-               style="{{data.style}}"
-               data-param="{{data.param}}"
-               data-compid="{{data.compId}}"
-               scroll-y="{{(data.customFeature.mode == 2 || data.customFeature.vesselAutoheight != 0) ? false : true}}"
-               scroll-x="{{data.customFeature.mode == 2? true: false}}"
-               lower-threshold="100"
-               bindscrolltolower="pageScrollFunc"
-               bindanimationend="animationEnd"
-  >
+  <scroll-view
+    class="element list-vessel-wrap scroll-ele {{data.customFeature.mode? 'mode-' + data.customFeature.mode: ''}} {{(data.customFeature.mode == 2 && data.curpage > 0) ? 'hor-request-status' : ''}}"
+    data-id="{{data.customFeature_id}}"
+    data-type="list-vessel"
+    style="{{data.style}}"
+    data-param="{{data.param}}"
+    data-compid="{{data.compId}}"
+    scroll-y="{{(data.customFeature.mode == 2 || data.customFeature.vesselAutoheight != 0) ? false : true}}"
+    scroll-x="{{data.customFeature.mode == 2? true: false}}"
+    lower-threshold="100"
+    bindscrolltolower="pageScrollFunc"
+    bindanimationend="animationEnd">
     <view class="js-list-container clearfix" data-list-index="0">
       <view class="list-vessel clearfix background-ele" wx:for="{{data.list_data}}"
-            wx:key=""
-            style="{{data.list_style}}"
-            data-dataid="{{data.customFeature.link == 'franchiseeDetail' ? item.form_data.app_id[0].text : (item.id || item.form_data.id[0].text)}}"
-            data-router="{{data.customFeature.link}}"
-            data-isseckill="{{item.form_data.is_seckill[0].text || ''}}"
-            data-compid="list_vessel6"
-            data-index="{{index}}"
-            catchtap="listVesselTurnToPage"><template name="zcFreeVessel6_0">
-  <block wx:if="{{data.customFeature.action == 'turn-to-xcx'}}">
-    <navigator target="miniProgram" open-type="navigate" app-id="{{data.customFeature['xcx-appid']}}" path="{{data.customFeature['xcx-page-url'] || ''}}" version="release">
-      <view class="element free-vessel" style="{{data.style}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
-        <block wx:if="{{!!item}}">
-          <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId}}"></template>
-        </block>
-        <block wx:else>
-          <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
-        </block>
+        wx:key=""
+        style="{{data.list_style}}"
+        data-dataid="{{data.customFeature.link == 'franchiseeDetail' ? item.form_data.app_id[0].text : (item.id || item.form_data.id[0].text)}}"
+        data-router="{{data.customFeature.link}}"
+        data-isseckill="{{item.form_data.is_seckill[0].text || ''}}"
+        data-compid="list_vessel6"
+        data-index="{{index}}"
+        catchtap="listVesselTurnToPage">
+        <template name="zcFreeVessel6_0">
+          <block wx:if="{{data.customFeature.action == 'turn-to-xcx'}}">
+            <navigator target="miniProgram" open-type="navigate" app-id="{{data.customFeature['xcx-appid']}}" path="{{data.customFeature['xcx-page-url'] || ''}}" version="release">
+              <view class="element free-vessel" style="{{data.style}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
+                <block wx:if="{{!!item}}">
+                  <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId}}"></template>
+                </block>
+                <block wx:else>
+                  <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
+                </block>
+              </view>
+            </navigator>
+          </block>
+          <block wx:else>
+            <view class="element free-vessel" style="{{data.style}}" data-event-params="{{data.customFeature}}" catchtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
+              <block wx:if="{{!!item}}">
+                <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId}}"></template>
+              </block>
+              <block wx:else>
+                <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data}}"></template>
+              </block>
+            </view>
+          </block>
+        </template>
+        <template name="zcSubFreeVessel6_0">
+          <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
+            <block wx:if="{{real_value}}">
+              <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
+            </block>
+            <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
+              <template is="zcPicture" data="{{data:data.content[0], real_value:detail_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+            </block>
+            <block wx:elif="{{in_dynamic_vessel === 'true'}}">
+              <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+            </block>
+            <block wx:else>
+              <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
+            </block>
+          </view>
+        </template>
+        <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
+          <block wx:if="{{real_value}}">
+            <template is="zcFreeVessel6_0" data="{{data:data.content[0], real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
+          </block>
+          <block wx:else>
+            <template is="zcFreeVessel6_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId}}"></template>
+          </block>
+        </view>
       </view>
-    </navigator>
-  </block>
-  <block wx:else>
-    <view class="element free-vessel" style="{{data.style}}" data-event-params="{{data.customFeature}}" catchtap="{{data.customFeature.action && data.customFeature.action != 'none' ? 'tapEventCommonHandler' : ''}}" bindanimationend="animationEnd" data-compid="{{ data.compId }}">
-      <block wx:if="{{!!item}}">
-        <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data ,index:index,item : item , parentType : parentType , page_form : page_form , form: form, dataId : dataId}}"></template>
-      </block>
-      <block wx:else>
-        <template is="zcSubFreeVessel6_0" data="{{data:data, real_value:real_value, detail_data: detail_data}}"></template>
-      </block>
-    </view>
-  </block>
-</template>
-<template name="zcSubFreeVessel6_0">
-  <view class="ele-container" wx:if="{{!data.content[0].hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:real_value.form_data[data.content[0].customFeature.segment], detail_data: detail_data,form:form, group_data: real_value}}"></template>
-  </block>
-  <block wx:elif="{{detail_data[data.content[0].customFeature.segment] && in_dynamic_vessel !== 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:detail_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:elif="{{in_dynamic_vessel === 'true'}}">
-    <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcPicture" data="{{data:data.content[0], real_value:item.form_data[data.content[0].customFeature.segment], detail_data: detail_data}}"></template>
-  </block>
-</view>
-</template>
-<view class="ele-container" wx:if="{{!data.content[0].hidden}}">
-  <block wx:if="{{real_value}}">
-    <template is="zcFreeVessel6_0" data="{{data:data.content[0], real_value:real_value, detail_data: detail_data, index:index, item : item}}"></template>
-  </block>
-  <block wx:else>
-    <template is="zcFreeVessel6_0" data="{{data:data.content[0], real_value:item, detail_data: detail_data ,index:index,item : item , parentType : data.content[0].parentCompid , page_form : data.content[0].page_form , form: data.form, dataId : dataId}}"></template>
-  </block>
-</view>
-</view>
     </view>
     <template wx:if="{{data.loading}}" is="requestLoading"></template>
     <template wx:if="{{data.is_more == 0 && data.list_data.length == 0}}" is="requestNone" data="{{data: '暂无数据~'}}"></template>
@@ -383,11 +425,4 @@
     </view>
   </scroll-view>
 </template>
-<view class="ele-container" wx:if="{{!list_vessel6.hidden}}">
-  <template is="zcListVessel6" data="{{data:list_vessel6, detail_data: detail_data,form:list_vessel1.customFeature.form}}"></template>
-</view>
-<block wx:if="{{!suspension7.hidden}}">
-  <template is="zcSuspension" data="{{data:suspension7}}"></template>
-</block>
 
-</view>
