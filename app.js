@@ -1737,6 +1737,7 @@ App({
         success: function (res) {
           let newdata = {};
           let formdata = res.data[0].form_data;
+          formdata.nYyHOkKXxi = formdata.nYyHOkKXxi.split(';')[0];
 
           for (let i in formdata) {
             if (i == 'category') {
