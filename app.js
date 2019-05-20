@@ -1753,6 +1753,7 @@ App({
             }
           }
           newdata['detail_data'] = formdata;
+          console.log(formdata)
           pageInstance.setData(newdata);
 
           // 当有视频字段时，请求视频链接，并放到数据里

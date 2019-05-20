@@ -14,6 +14,10 @@
 <component-goodsShoppingCart id="component-goodsShoppingCart" bind:afterSelectedGoods="afterSelectGoods"></component-goodsShoppingCart>
 <component-sinkingModal></component-sinkingModal>
 <franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar>
+
+<!-- 添加到桌面banner -->
+<image class="add-desk" src="../../../images/addDesk.png"></image>
+
 <view class="ele-container" wx:if="{{!text1.hidden}}">
   <block wx:if="{{text1.customFeature.segment == 'default_map' && real_value}}">
   <!-- 在动态列表中的双栏中绑定地图 -->
