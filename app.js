@@ -29,6 +29,7 @@ App({
     this.initCapture();
   },
   initCapture() {
+    // wx.setStorageSync('isCapture', false)
     wx.onUserCaptureScreen(res => {
       wx.setStorageSync('isCapture', true)
       wx.reLaunch({ url: '/pages/empty/empty' })
