@@ -16,9 +16,9 @@
   <franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar>
 
   <!-- 微量联盟插屏广告 & 悬浮广告 -->
-  <view class="wl_insert">
+  <!-- <view class="wl_insert">
     <wl-ad data-id="{{wlad.ad.insert}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"> </wl-ad>
-  </view>
+  </view> -->
   <view class="wl_fixed">
     <wl-ad data-id="{{wlad.ad.fixed}}" adData="{{wlad.adData}}" bindclick="wladClick" bindclose="wladClose" class="wl_component"> </wl-ad>
   </view>
