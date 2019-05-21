@@ -8,3 +8,16 @@ page{background-size:100%;margin-left:auto;}
   50% {transform: scale(0.9);}
   100% {transform: scale(1);}
 }
+
+.peple-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: rgba(0,0,0,.5);
+  color: #ffffff;
+  padding: 16rpx 32rpx;
+  border-radius: 0 90rpx 90rpx 0;
+  top: 32rpx;
+  opacity: 0.8;
+}

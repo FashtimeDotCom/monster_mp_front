@@ -14,6 +14,8 @@
 <component-goodsShoppingCart id="component-goodsShoppingCart" bind:afterSelectedGoods="afterSelectGoods"></component-goodsShoppingCart>
 <component-sinkingModal></component-sinkingModal>
 <franchiseeTabbar franchiseeInfo="{{franchiseeInfo}}"></franchiseeTabbar>
+<!-- 浏览人数弹窗 -->
+<view class="peple-view">有{{viewPeople}}人正在浏览此文章</view>
 
 <!-- 添加到桌面banner -->
 <image class="add-desk" src="../../../images/addDesk.png"></image>
