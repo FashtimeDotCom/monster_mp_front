@@ -11,13 +11,24 @@ page{background-size:100%;margin-left:auto;}
 
 .peple-view {
   position: fixed;
-  top: 0;
   left: 0;
   z-index: 1;
   background: rgba(0,0,0,.5);
   color: #ffffff;
   padding: 16rpx 32rpx;
   border-radius: 0 90rpx 90rpx 0;
-  top: 32rpx;
+  top: 382rpx;
   opacity: 0.8;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+}
+.flex-1 {
+  flex: 1;
+}
+.share-wrap {
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
 }

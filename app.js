@@ -1744,8 +1744,8 @@ App({
         success: function (res) {
           let newdata = {};
           let formdata = res.data[0].form_data;
+          formdata['splitnYyHOkKXxi'] = formdata.nYyHOkKXxi.split(';');
           formdata.nYyHOkKXxi = formdata.nYyHOkKXxi.split(';')[0];
-
           for (let i in formdata) {
             if (i == 'category') {
               continue;
@@ -1760,7 +1760,6 @@ App({
             }
           }
           newdata['detail_data'] = formdata;
-          console.log(formdata)
           pageInstance.setData(newdata);
 
           // 当有视频字段时，请求视频链接，并放到数据里
