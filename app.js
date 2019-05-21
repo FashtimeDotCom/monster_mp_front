@@ -26,6 +26,13 @@ App({
       this.globalData.userInfo = userInfo;
     }
     this.appInitial();
+    this.initCapture();
+  },
+  initCapture() {
+    wx.onUserCaptureScreen(res => {
+      wx.setStorageSync('isCapture', true)
+      wx.reLaunch({ url: '/pages/empty/empty' })
+    })
   },
   appInitial: function () {
     let that = this;

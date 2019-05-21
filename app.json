@@ -11,7 +11,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/orderDetail/orderDetail",
     "pages/groupGoodsDetail/groupGoodsDetail",
-    "pages/ence_push/ence_push"
+    "pages/ence_push/ence_push",
+    "pages/empty/empty"
   ],
   "subPackages": [
     {

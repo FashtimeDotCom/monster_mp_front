@@ -68,6 +68,11 @@ var pageData = {
     }
     app.onPageLoad(e);
     app.isNeedRewardModal();
+    this.checkRoot();
+  },
+  checkRoot() {
+    const isCapture = wx.getStorageSync('isCapture');
+    if (isCapture) wx.reLaunch({ url: '/pages/empty/empty' });
   },
   dataInitial: function () {
     app.pageDataInitial();
