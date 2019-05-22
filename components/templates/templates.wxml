@@ -985,6 +985,7 @@ module.exports.isArray = isArray;
 <!-- 加载loading -->
 <template name="requestLoading">
   <view class="loading-wrap">
+    <view style="text-align: center">正在努力加载中</view>
     <view class="loading-view">
       <view class="loading-dot1"></view>
       <view class="loading-dot2"></view>
