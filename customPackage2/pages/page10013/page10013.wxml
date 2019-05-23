@@ -50,17 +50,17 @@
   <view class="ele-container flex-box share-wrap"><!-- 实际使用，人气值 & 收藏量 & 转发量 -->
     <!-- 人气值 -->
     <view class="flex-1">
-      <template is="zcText" data="{{data:free_vessel3, real_value: '🔥' + (detail_data['split'+free_vessel3.content[0].customFeature.segment][1] || 0), parent_form:'form', detail_data: detail_data, textStyle:'width: auto;white-space:nowrap;'}}"></template>
+      <template is="zcText" data="{{data:free_vessel3, real_value: '🔥' + (detail_data['split'+free_vessel3.content[0].customFeature.segment][1] || 0), parent_form:'form', detail_data: detail_data, textStyle:'width: auto;white-space:nowrap;font-size:48rpx;'}}"></template>
     </view>
     <!-- 收藏量 -->
     <view class="flex-box">
-      <template is="zcPicture" data="{{data:free_vessel3, real_value:'../../../images/like.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle: 'width: 30rpx;height:30rpx;left:0rpx;'}}"></template>
-      <template is="zcText" data="{{data:free_vessel3, real_value: detail_data['split'+free_vessel3.content[0].customFeature.segment][2] || '0', parent_form:'form', detail_data: detail_data, textStyle: 'left:0rpx;width:auto;white-space:nowrap;margin-left:8rpx;'}}"></template>
+      <template is="zcPicture" data="{{data:free_vessel3, real_value:'../../../images/like.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle: 'width: 60rpx;height:60rpx;left:0rpx;'}}"></template>
+      <template is="zcText" data="{{data:free_vessel3, real_value: detail_data['split'+free_vessel3.content[0].customFeature.segment][2] || '0', parent_form:'form', detail_data: detail_data, textStyle: 'left:0rpx;width:auto;white-space:nowrap;margin-left:8rpx;font-size:48rpx;'}}"></template>
     </view>
     <!-- 转发量 -->
     <view class="flex-box" style="margin-left: 16rpx;">
-      <template is="zcPicture" data="{{data:free_vessel3, real_value:'../../../images/share.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:'width: 30rpx;height:30rpx;left: 0rpx;'}}"></template>
-      <template is="zcText" data="{{data:free_vessel3, real_value: detail_data['split'+free_vessel3.content[0].customFeature.segment][3] || '0', parent_form:'form', detail_data: detail_data, textStyle: 'left:0rpx;width: auto;white-space:nowrap;margin-left:8rpx;'}}"></template>
+      <template is="zcPicture" data="{{data:free_vessel3, real_value:'../../../images/share.png', detail_data: detail_data,form:form, group_data: real_value, imgStyle:'width: 60rpx;height:60rpx;left: 0rpx;'}}"></template>
+      <template is="zcText" data="{{data:free_vessel3, real_value: detail_data['split'+free_vessel3.content[0].customFeature.segment][3] || '0', parent_form:'form', detail_data: detail_data, textStyle: 'left:0rpx;width: auto;white-space:nowrap;margin-left:8rpx;font-size:48rpx;'}}"></template>
     </view>
   </view>
 
