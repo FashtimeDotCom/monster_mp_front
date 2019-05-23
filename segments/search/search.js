@@ -56,16 +56,16 @@ var search = new Element({
         search_value = e.detail.value,
         pageInstance = app.getAppCurrentPage(),
         newdata = {};
-  
+
       if (topicCompId) {
         let classifyCompId = pageInstance.data[topicCompId].relateClassifyCompId;
-  
+
         newdata[compid + '.searchValue'] = search_value;
         newdata[topicCompId + '.listStatus.loading'] = false;
         newdata[topicCompId + '.listStatus.isMore'] = true;
         newdata[topicCompId + '.listParam.section_id'] = '';
         newdata[topicCompId + '.listParam.category_id'] = '';
-  
+
         if (classifyCompId) {
           newdata[classifyCompId + '.selectedSectionId'] = '';
           newdata[classifyCompId + '.selectedCategoryId'] = '';
@@ -104,7 +104,7 @@ var search = new Element({
       let search_compData = {};
       let search_customFeature = {};
       let page         = '';
-  
+
       if (listType == 'group-buy-list') {
         for (let index in pageInstance.groupBuyListComps) {
           let params = pageInstance.groupBuyListComps[index];
@@ -132,7 +132,7 @@ var search = new Element({
             break;
           }
         }
-  
+
         pageInstance.setData({
           [search_compid + '.pageObj']: {
             isLoading: false,
@@ -142,7 +142,7 @@ var search = new Element({
           [search_compid + '.selectedCateId']: '',
           [search_compid + '.newslist']: []
         });
-        
+
         var News = require('../news/news.js');
         News && News.getNewsList(
           {
@@ -160,34 +160,34 @@ var search = new Element({
             }
           }
         )
-  
+
         return;
       }
-  
+
       let newdata = {};
-  
+
       if( scompid ){
         search_compid = scompid;
         search_compData = pageInstance.data[search_compid];
         search_customFeature = search_compData.customFeature;
-  
+
         page = search_compData.curpage + 1;
-  
+
         if(!search_compData.is_more && typeof sevent == 'object' && sevent.type == 'tap'){
           app.showModal({
             content: '已经加载到最后了'
           });
         }
-  
+
         if (pageInstance.requesting || !search_compData.is_more) {
           return;
         }
         pageInstance.requesting = true;
-  
+
       }else{
-  
+
         page = 1;
-  
+
         if(listType === 'list-vessel'){
           for (let index in pageInstance.list_compids_params) {
             let params = pageInstance.list_compids_params[index];
@@ -242,15 +242,15 @@ var search = new Element({
             }
           }
         }
-  
+
         search_compData = pageInstance.data[search_compid];
         search_customFeature = search_compData.customFeature;
       }
       newdata[search_compid + '.loading'] = true;
       newdata[search_compid + '.loadingFail'] = false;
       pageInstance.setData(newdata);
-  
-  
+
+
       let url = '/index.php?r=appData/search';
       let param = {
         "search":{
@@ -262,13 +262,13 @@ var search = new Element({
         page: page
       };
       param.page_size = search_customFeature.loadingNum || 20;
-  
+
       if(listType === 'franchisee-list'){
         let info = app.getLocationInfo();
         param.search.longitude = info.longitude;
         param.search.latitude = info.latitude;
       }
-  
+
       app.sendRequest({
         url: url,
         data: param,
@@ -276,7 +276,7 @@ var search = new Element({
         chain: listType === 'franchisee-list' ? true : '',
         success: function (res) {
           let newdata = {};
-  
+
           if(res.data.length == 0){
             setTimeout(function () {
               app.showModal({
@@ -303,7 +303,9 @@ var search = new Element({
                 if (listField.indexOf(k) < 0 && /<("[^"]*"|'[^']*'|[^'">])*>/.test(description)) { //没有绑定的字段的富文本置为空
                   res.data[j].form_data[k] = '';
                 }else if(app.needParseRichText(description)) {
-                  res.data[j].form_data[k] = app.getWxParseResult(description);
+                  res.data[j].form_data['row' + k] = description;
+                  res.data[j].form_data['split' + k] = description.split(';');
+                  res.data[j].form_data[k] = app.getWxParseResult(description.split(';')[0]);
                 }
               }
             }
@@ -316,23 +318,23 @@ var search = new Element({
             newdata[search_compid + '.franchisee_data'] = page == 1 ? res.data : search_compData.franchisee_data.concat(res.data);
           }else if(listType == 'video-list'){
             let rdata = res.data;
-  
+
             for (let i = 0; i < rdata.length; i++) {
               rdata[i].video_view = app.handlingNumber(rdata[i].video_view);
             }
             newdata[search_compid + '.video_data'] = page == 1 ? rdata : search_compData.video_data.concat(rdata);
-  
+
           }
-  
+
           newdata[search_compid + '.is_search'] = true;
           newdata[search_compid + '.searchEle'] = compid;
           newdata[search_compid + '.is_more']   = res.is_more;
           newdata[search_compid + '.curpage']   = res.current_page;
           newdata[search_compid + '.loading'] = false;
           newdata[search_compid + '.loadingFail'] = false;
-  
+
           pageInstance.setData(newdata);
-  
+
         },
         fail: function (err) {
           let newdata = {};
