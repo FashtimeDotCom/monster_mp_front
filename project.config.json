@@ -66,10 +66,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "toPage10003",
 					"pathName": "pages/jump/toPage10003",
-					"query": "",
+					"query": "detail=446433",
 					"scene": null
 				}
 			]
