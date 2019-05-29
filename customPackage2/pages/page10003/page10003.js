@@ -1,4 +1,4 @@
-var Page = global.GioPage;
+// var Page = global.GioPage;
 var Page = require('../../../utils/wlad_sdk.min.js').Page;
 var app      = getApp();
 
