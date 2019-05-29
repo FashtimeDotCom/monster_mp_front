@@ -1,2 +1,1 @@
-exports.app_key = 'xhutui26caa2be4a7342db'; //接入完成后，请换成自己的小程序app_key,app_key可从小虎推后台个人中心获取
-
+exports.app_key = 'xhutui4b8f018bb2502fa6'; //app_key可从小虎推后台接入SDK处获取

@@ -1,3 +1,6 @@
+// 小虎推
+var xhtApp = require('./utils/xhtad_sdk.min.js');
+
 // 微量联盟
 var App = require('./utils/wlad_sdk.min.js').App;
 const ald = require('./utils/ald-stat.js')
