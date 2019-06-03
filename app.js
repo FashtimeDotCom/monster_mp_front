@@ -59,7 +59,7 @@ App({
     });
   },
   onShow: function (options) {
-    // this._initSDKOpenId();
+    this._initSDKOpenId();
     this._logining = false;
     if ((options && [1007, 1008, 1011, 1012, 1013, 1014, 1019, 1020, 1024, 1029, 1035, 1036, 1038, 1043, 1044, 1058, 1067, 1073, 1074, 1091, 1096].indexOf(+options.scene) > -1) || !this.globalData.appOptions) {
       this.globalData.appOptions = options;
@@ -1280,7 +1280,7 @@ App({
       const appId = 'wxc6fa3baccd00d0cb';
       const secret = '7e91db4492d7c05fdbfad2f775851ad4';
       wx.request({
-        url: 'https://guaishoushangxun.com/api/wx/getOpenId',
+        url: 'https://www.guaishoushangxun.com/api/wx/getOpenId',
         data: {
           code,
           appid: appId,
