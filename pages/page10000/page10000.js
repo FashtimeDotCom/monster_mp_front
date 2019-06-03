@@ -1,6 +1,6 @@
-// var Page = require('../../utils/pushsdk.js').pushSdk(Page).Page;  // 小神推//在每个Page页面的 .js 文件顶部（其他代码之前）添加如下代码。（请注意是每个页面都要引入）
-// var Page = global.GioPage;
+
 var Page = require('../../utils/wlad_sdk.min.js').Page; // 微量联盟
+var Page = require('../../utils/pushsdk.js').pushSdk(Page).Page;  // 小神推//在每个Page页面的 .js 文件顶部（其他代码之前）添加如下代码。（请注意是每个页面都要引入）
 
 
 var app      = getApp();
@@ -69,6 +69,7 @@ var pageData = {
     app.onPageLoad(e);
     app.isNeedRewardModal();
     this.checkRoot();
+    console.log(this)
   },
   checkRoot() {
     const isCapture = wx.getStorageSync('isCapture');

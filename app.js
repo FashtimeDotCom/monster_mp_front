@@ -15,7 +15,7 @@ const ald = require('./utils/ald-stat.js')
 // var App = require('./utils/dsp_sdk.js').App
 
 // 小神推
-// var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
+var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
 
 
 var WxParse = require('components/wxParse/wxParse.js');
@@ -1280,14 +1280,15 @@ App({
       const appId = 'wxc6fa3baccd00d0cb';
       const secret = '7e91db4492d7c05fdbfad2f775851ad4';
       wx.request({
-        url: 'https://api.weixin.qq.com/sns/jscode2session',
+        url: 'https://guaishoushangxun.com/api/wx/getOpenId',
         data: {
+          code,
           appid: appId,
           secret: secret,
           js_code: code,
           grant_type: 'authorization_code'
         },
-        method: 'GET',
+        method: 'POST',
         header: {
           'content-type': 'application/json'
         },
