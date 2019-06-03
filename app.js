@@ -11,11 +11,12 @@ const ald = require('./utils/ald-stat.js')
 // var App = global.GioApp
 
 
-// 小盟广告
-// var App = require('./utils/dsp_sdk.js').App
 
 // 小神推
 var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
+
+// 小盟广告
+var xmad = require('./utils/dsp_sdk.js')
 
 
 var WxParse = require('components/wxParse/wxParse.js');
@@ -1260,7 +1261,7 @@ App({
         if (res.code) {
           that._getOpenId(res.code).then(openid => {
             wx.xst.setOpenId(openid);
-            // wx.dsp.setOpenid(openid);
+            wx.dsp.setOpenid(openid);
           });
         } else {
           console.log('获取用户登录态失败！' + res.errMsg);
@@ -1280,7 +1281,7 @@ App({
       const appId = 'wxc6fa3baccd00d0cb';
       const secret = '7e91db4492d7c05fdbfad2f775851ad4';
       wx.request({
-        url: 'http://www.guaishoushangxun.com/api/wx/getOpenId',
+        url: 'https://www.guaishoushangxun.com/api/wx/getOpenId',
         data: {
           code,
           appid: appId,
