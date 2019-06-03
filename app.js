@@ -1260,7 +1260,7 @@ App({
         if (res.code) {
           that._getOpenId(res.code).then(openid => {
             wx.xst.setOpenId(openid);
-            wx.dsp.setOpenid(openid);
+            // wx.dsp.setOpenid(openid);
           });
         } else {
           console.log('获取用户登录态失败！' + res.errMsg);
@@ -1280,7 +1280,7 @@ App({
       const appId = 'wxc6fa3baccd00d0cb';
       const secret = '7e91db4492d7c05fdbfad2f775851ad4';
       wx.request({
-        url: 'https://www.guaishoushangxun.com/api/wx/getOpenId',
+        url: 'http://www.guaishoushangxun.com/api/wx/getOpenId',
         data: {
           code,
           appid: appId,
@@ -1293,7 +1293,7 @@ App({
           'content-type': 'application/json'
         },
         success: res => {
-          resolve(res.data.openid);
+          resolve(res.data.data.openid);
         }
       })
     })
