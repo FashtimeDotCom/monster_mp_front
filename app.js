@@ -60,6 +60,7 @@ App({
     });
   },
   onShow: function (options) {
+    console.log('[APP onShow] - ', new Date() - 0);
     this._initSDKOpenId();
     this._logining = false;
     if ((options && [1007, 1008, 1011, 1012, 1013, 1014, 1019, 1020, 1024, 1029, 1035, 1036, 1038, 1043, 1044, 1058, 1067, 1073, 1074, 1091, 1096].indexOf(+options.scene) > -1) || !this.globalData.appOptions) {
@@ -1255,23 +1256,49 @@ App({
     })
   },
   _initSDKOpenId: function () {
-    let that = this;
+    console.log('[APP _initSDKOpenId] - ', new Date() - 0);
     wx.login({
-      success: function (res) {
+      success: res => {
         if (res.code) {
-          that._getOpenId(res.code).then(openid => {
+          this._getOpenId(res.code).then(openid => {
             wx.xst.setOpenId(openid);
-            wx.dsp.setOpenid(openid);
+            this.initSDKDSP(openid);
           });
         } else {
           console.log('获取用户登录态失败！' + res.errMsg);
-          that.addLog('获取用户登录态失败！' + res.errMsg);
+          this.addLog('获取用户登录态失败！' + res.errMsg);
         }
       },
-      fail: function (res) {
-        that._logining = false;
+      fail: res => {
+        this._logining = false;
         console.log('login fail: ' + res.errMsg);
-        that.addLog('login fail: ' + res.errMsg);
+        this.addLog('login fail: ' + res.errMsg);
+      }
+    })
+  },
+  initSDKDSP: function (openid) {
+    // 查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log('[DSP setOpenid] - ', new Date() - 0, openid);
+          wx.dsp.setOpenid(openid);
+        }else{
+          setTimeout(() => {
+            let pageInstance = this.getAppCurrentPage();
+            pageInstance.setData({
+              showGetUserInfo: true
+            });
+          }, 500);
+        }
+      },
+      fail: res => {
+        setTimeout(() => {
+          let pageInstance = this.getAppCurrentPage();
+          pageInstance.setData({
+            showGetUserInfo: true
+          });
+        }, 500);
       }
     })
   },
