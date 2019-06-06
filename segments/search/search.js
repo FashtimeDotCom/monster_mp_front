@@ -105,6 +105,15 @@ var search = new Element({
       let search_customFeature = {};
       let page         = '';
 
+      if (keyword) {
+        pageInstance.setData({
+          'backToHomePage': {
+            showButton: true,
+            showTip: true
+          }
+        })
+      }
+
       if (listType == 'group-buy-list') {
         for (let index in pageInstance.groupBuyListComps) {
           let params = pageInstance.groupBuyListComps[index];

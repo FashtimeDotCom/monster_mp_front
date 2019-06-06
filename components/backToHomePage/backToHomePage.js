@@ -15,7 +15,7 @@ Component({
   },
   methods: {
     backToHomePage:function() {
-      app.turnToPage('/pages/' + app.globalData.homepageRouter + '/' + app.globalData.homepageRouter)
+      wx.reLaunch({ url: '/pages/' + app.globalData.homepageRouter + '/' + app.globalData.homepageRouter })
     },
   }
 })
