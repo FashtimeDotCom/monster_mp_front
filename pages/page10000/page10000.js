@@ -69,7 +69,6 @@ var pageData = {
     app.onPageLoad(e);
     app.isNeedRewardModal();
     this.checkRoot();
-    console.log(this)
   },
   checkRoot() {
     const isCapture = wx.getStorageSync('isCapture');

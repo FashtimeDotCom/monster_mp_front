@@ -16,7 +16,8 @@ const ald = require('./utils/ald-stat.js')
 var App = require('./utils/pushsdk.js').pushSdk(App, 'App').App;
 
 // 小盟广告
-var xmad = require('./utils/dsp_sdk.js')
+// var xmad = require('./utils/dsp_sdk.js')
+var App = require('./utils/dsp_sdk.js').App
 
 
 var WxParse = require('components/wxParse/wxParse.js');
@@ -60,7 +61,6 @@ App({
     });
   },
   onShow: function (options) {
-    console.log('[APP onShow] - ', new Date() - 0);
     this._initSDKOpenId();
     this._logining = false;
     if ((options && [1007, 1008, 1011, 1012, 1013, 1014, 1019, 1020, 1024, 1029, 1035, 1036, 1038, 1043, 1044, 1058, 1067, 1073, 1074, 1091, 1096].indexOf(+options.scene) > -1) || !this.globalData.appOptions) {
@@ -1256,7 +1256,6 @@ App({
     })
   },
   _initSDKOpenId: function () {
-    console.log('[APP _initSDKOpenId] - ', new Date() - 0);
     wx.login({
       success: res => {
         if (res.code) {
@@ -1281,7 +1280,6 @@ App({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          console.log('[DSP setOpenid] - ', new Date() - 0, openid);
           wx.dsp.setOpenid(openid);
         }else{
           setTimeout(() => {
